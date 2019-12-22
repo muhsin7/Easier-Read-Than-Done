@@ -6,7 +6,7 @@ app = Flask(__name__)
 def index():
     return render_template('index.html')
 
-@app.route('/book/<book>')
+@app.route('/book/<book>/')
 def book(title):
     return render_template('flush.html')
 
