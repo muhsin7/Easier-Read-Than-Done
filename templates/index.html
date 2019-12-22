@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<title>Easier Read Than Done</title>
+  <head>
+    <!--Import Google Icon Font-->
+    <!-- <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> -->
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="{{  url_for('static', filename='materialize.min.css')  }}"  media="screen,projection"/>
+    <!-- Import main stylesheet -->
+    <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}"  media="screen,projection"/>
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  </head>
+
+  <body>
+    <center>
+      <br />
+      <br />
+      <br />
+      <br />
+      <h1>Easier Read Than Done</h1>
+      <h6>A Student Led Book Club</h6>
+    </center>
+    <div class="container">
+      <div class="row">
+        <!-- # <a href="{{  url_for('book', title='flush')  }}"><div class="covers">   -->
+          <img src="{{  url_for('static', filename='covers/flush.jpg')  }}" class="" />
+          <div class="overlay_text">
+            <b>Flush</b>
+            <br />
+            <i>Carl Hiassen</i>
+          </div>
+        <!-- # </a> -->
+        </div>
+      </div>
+    </div>
+    <!-- <div class="container col s6">
+        <div class="row">
+          <div class="book">
+            <img src="covers/flush.jpg" class="cover"/>
+            <div class="overlay">
+              <div class="overlay_text">
+                <i>
+                  <b>Flush</b>
+                  <br />
+                  Carl Hiaasen
+                </i>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div> -->
+    <!-- <div class="container">
+      <div class="row">
+        <div class="offset-s2">
+          <div class="col s2">
+            <div class="book">
+              <img src="covers/flush.jpg" class="cover"/>
+              <div class="overlay">
+                <div class="overlay_text">
+                  <i>
+                    <b>Flush</b>
+                    <br />
+                    Carl Hiaasen
+                  </i>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div> -->
+    <br /><br /><br /><br /><br /><br /><br /><br /><br />
+    <!--JavaScript at end of body for optimized loading-->
+    <footer class="page-footer black" style="margin-top:20px">
+      <div class="container">
+        <div class="row" style="margin-bottom: 0px;">
+          <div class="col s3 right">
+             <i>Developed by <a href="https://github.com/muhsin7" target="_blank">Muhsin7</a></i>
+            <br />
+            <br />
+          </div>
+        </div>
+      </div>
+    </footer>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/materialize.js') }}"></script>
+  </body>
+</html>

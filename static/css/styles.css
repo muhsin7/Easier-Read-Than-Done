@@ -1,0 +1,105 @@
+@font-face {
+font-family: 'Zapfino';
+font-style: normal;
+font-weight: normal;
+src: local('Zapfino'), url('../fonts/Zapfino.woff') format('woff');
+}
+
+html{
+  height: 100%;
+}
+
+body{
+  background-image: url("../bg.jpeg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+h1, h5{
+  font-family: Zapfino;
+  margin-bottom: 0px;
+  line-height: 90%;
+}
+
+h6{
+  font-family: cursive;
+  font-style: italic;
+}
+
+.book {
+  position: relative;
+  /* width: 50%; */
+  width: auto;
+}
+
+.cover {
+  display: block;
+  width: inherit;
+  height: auto;
+  border-radius: 50px;
+}
+
+.overlay {
+  border-radius: 50px;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: inherit;
+  opacity: 0;
+  transition: .5s ease;
+  background-color: rgba(0, 0, 0, 0.75);
+}
+
+img:hover{
+  transition: .5s ease;
+  filter: brightness(0.25);
+}
+
+
+img{
+  height: 300px !important;
+  width: auto inherit !important;
+  border-radius: 10px;
+}
+
+.book:hover .overlay {
+  opacity: 1;
+}
+
+.overlay_text {
+  color: white;
+  font-size: 20px;
+  /* position: absolute; */
+  /* top: 50%;
+  left: 50%; */
+  /* -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%); */
+  text-align: center;
+  visibility: hidden;
+  transition: .5s ease;
+  bottom: 50%;
+  top: 50%;
+}
+
+.cover:hover .overlay_text{
+  visibility: visible;
+  transition: .5s ease;
+}
+
+.page-footer{
+  background-color: rgba(0, 0, 0, 0.75) !important;
+  bottom: 0px;
+}
+
+hr{
+  color: #000;
+  /* height: 5px; */
+  overflow: hidden;
+  border: solid #000;
+  height: 50%;
+}
