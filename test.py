@@ -1,7 +1,5 @@
 import gsheets
-from flask import Flask, render_template
-app = Flask(__name__)
-
+from pprint import pprint
 
 books, posts = gsheets.main()
 books, posts = books[1:], posts[1:]
@@ -23,13 +21,5 @@ for y in posts:
     'post': x[2],
     })
 
-@app.route('/')
-def index():
-    return render_template('index.html', books=books_dict)
-
-@app.route('/book/<book>/')
-def book(title):
-    return render_template('flush.html')
-
-if __name__ == '__main__':
-   app.run(debug = True)
+print(book_dicts)
+print(post_dicts)

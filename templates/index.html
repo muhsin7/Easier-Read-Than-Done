@@ -22,14 +22,28 @@
       <h6>A Student Led Book Club</h6>
     </center>
     <div class="container">
-      <div class="row">
+      <!-- <div class="row">
           <img src="{{  url_for('static', filename='covers/flush.jpg')  }}" class="" />
           <div class="overlay_text">
             <b>Flush</b>
             <br />
             <i>Carl Hiassen</i>
           </div>
-        </div>
+        </div> -->
+
+        {% for book in books[1:] %}
+            <!-- {% for x in book %}
+                <div>
+                  {{ x }}
+                </div>
+            {% endfor %} -->
+            <div>
+              {{ book }}
+            </div>
+        {% endfor %}
+
+
+
       </div>
     </div>
     <!-- <div class="container col s6">
