@@ -18,28 +18,28 @@
       <br />
       <br />
       <br />
-      <h1>Easier Read Than Done</h1>
+      <h1><a href="/">Easier Read Than Done</a></h1>
       <h6>A Student Led Book Club</h6>
     </center>
     <div class="container">
-      <!-- <div class="row">
-          <img src="{{  url_for('static', filename='covers/flush.jpg')  }}" class="" />
-          <div class="overlay_text">
+      <div class="row">
+          <!-- <img src="{{  url_for('static', filename='covers/flush.jpg')  }}" class="" /> -->
+          <!-- <div class="overlay_text">
             <b>Flush</b>
             <br />
             <i>Carl Hiassen</i>
-          </div>
-        </div> -->
+          </div> -->
+        </div>
 
-        {% for book in books[1:] %}
-            <!-- {% for x in book %}
-                <div>
-                  {{ x }}
-                </div>
-            {% endfor %} -->
+        {% for book in books %}
             <div>
-              {{ book }}
+              <a href="{{ url_for('book' ,book_id=book['book_id']) }}">
+                  <h3>{{ book['book'] }} by <i>{{ book['author'] }}</i></h3>
+                  <img src="{{ book['book_cover'] }}" />
+              </a>
             </div>
+            <br />
+            <br />
         {% endfor %}
 
 
@@ -81,7 +81,7 @@
         </div>
       </div>
     </div> -->
-    <br /><br /><br /><br /><br /><br /><br /><br /><br />
+    <!-- <br /><br /><br /><br /><br /><br /><br /><br /><br /> -->
     <!--JavaScript at end of body for optimized loading-->
     <footer class="page-footer black" style="margin-top:20px">
       <div class="container">

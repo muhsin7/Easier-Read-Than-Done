@@ -5,9 +5,9 @@
     <!--Import Google Icon Font-->
     <!-- <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> -->
     <!--Import materialize.css-->
-    <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css\materialize.min.css') }}"  media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="{{  url_for('static', filename='materialize.min.css')  }}"  media="screen,projection"/>
     <!-- Import main stylesheet -->
-    <link rel="stylesheet" href="css/styles.css">
+    <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}"  media="screen,projection"/>
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   </head>
@@ -18,32 +18,38 @@
       <br />
       <br />
       <br />
-      <h1>Easier Read Than Done</h1>
+      <h1><a href="/">Easier Read Than Done</a></h1>
       <h6>A Student Led Book Club</h6>
       <br /><br /><br />
       <h5>Flush - Carl Hiaasen</h5>
     </center>
     <div class="container">
       <div class="row">
-        <a href="flush.html"><div class="covers">
-          <img src="covers/flush.jpg" class="" />
-          </div></a>
+          <center>
+            <img src="{{ book['book_cover'] }}"/>
+          </center>
+          </div>
         </div>
       </div>
 
       <br /><br />
       <div class="container">
         <div class="row">
-          <h5>Connection to global issues</h5>
+          <h5>Posts</h5>
           <hr />
-          <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+          {% for post in posts %}
+            <div class="card darken-1">
+              <div class="card-content white-text">
+                <span class="card-title">By {{ post['post_author'] }}</span>
+                <p>{{ post['post'] }}</p>
+              </div>
+            </div>
+          {% endfor %}
 
-          <h5>Analysis</h5>
-          <hr />
           </div>
       </div>
     <br /><br /><br /><br /><br /><br /><br /><br /><br />
-
+    <!--JavaScript at end of body for optimized loading-->
     <footer class="page-footer black" style="margin-top:20px">
       <div class="container">
         <div class="row" style="margin-bottom: 0px;">
@@ -55,6 +61,6 @@
         </div>
       </div>
     </footer>
-    <script type="text/javascript" src="js/materialize.min.js"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/materialize.js') }}"></script>
   </body>
 </html>

@@ -18,18 +18,25 @@ for x in books:
 
 for y in posts:
     post_dicts.append({
-    'book_id': x[0],
-    'post_author': x[1],
-    'post': x[2],
+    'book_id': y[0],
+    'post_author': y[1],
+    'post': y[2],
     })
 
 @app.route('/')
 def index():
-    return render_template('index.html', books=books_dict)
+    return render_template('index.html', books=book_dicts)
 
-@app.route('/book/<book>/')
-def book(title):
-    return render_template('flush.html')
+@app.route('/book/<int:book_id>/')
+def book(book_id):
+    post_dict = [x for x in post_dicts if x['book_id']==str(book_id)]
+    for i in book_dicts:
+        if i['book_id'] == str(book_id):
+            selected_book = i
+    print(post_dict)
+    return render_template('book.html', book_id=book_id, posts=post_dict, book=selected_book)
+
+    # return render_template('book.html', book_id=book_id, post_dicts=post_dict)
 
 if __name__ == '__main__':
    app.run(debug = True)
