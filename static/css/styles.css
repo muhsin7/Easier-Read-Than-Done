@@ -10,17 +10,28 @@ html{
   color: black !important;
 }
 
+a.title:link, a.title:visited{
+    color: black !important;
+}
+
+.title{
+    color: black;
+}
+
 body{
   background-image: url("../bg.jpeg");
   background-repeat: no-repeat;
   background-size: cover;
+  background-size: 100%;
   background-attachment: fixed;
+
 }
 
 h1, h5{
   font-family: Zapfino;
   margin-bottom: 0px;
   line-height: 90%;
+  color: black !important !important;
 }
 
 h6{
@@ -103,4 +114,9 @@ hr{
   overflow: hidden;
   border: solid #000;
   height: 50%;
+}
+
+
+.post{
+    border-radius: 15px !important;
 }

@@ -1,42 +1,76 @@
-import gsheets
-from flask import Flask, render_template
+from flask import Flask, render_template, request, redirect, url_for, abort
+import pyrebase
+
+}
+
+firebase = pyrebase.initialize_app(config)
+db = firebase.database()
 app = Flask(__name__)
 
+def get_posts(id):
+    all_posts = db.child('posts').get().each()
+    book_posts = []
+    for x in all_posts:
+        if int(x.val()['book_id']) == id:
+            book_posts.append(x)
 
-books, posts = gsheets.main()
-books, posts = books[1:], posts[1:]
+    return book_posts
 
-book_dicts = []
-post_dicts = []
-for x in books:
-    book_dicts.append({
-    'book_id': x[0],
-    'book': x[1],
-    'author': x[2],
-    'book_cover': x[3],
-    })
 
-for y in posts:
-    post_dicts.append({
-    'book_id': y[0],
-    'post_author': y[1],
-    'post': y[2],
-    })
+all_books = db.child('books').get().each()
+def get_book(id):
+    for x in all_books:
+        if x.val()['book_id'] == id:
+            selected_book = x
+    return selected_book
+
+def increment_id():
+    last_book = all_books[-1]
+    return int(last_book.val()['book_id'])+1
 
 @app.route('/')
 def index():
-    return render_template('index.html', books=book_dicts)
+    books = db.child('books').get()
+    return render_template('index.html', books=books.each())\
 
-@app.route('/book/<int:book_id>/')
+# @app.errorhandler(404)
+# def pagenotfound(e):
+#     return render_template('404.html'), 404
+
+@app.route('/book/<int:book_id>/', methods=['GET', 'POST'])
 def book(book_id):
-    post_dict = [x for x in post_dicts if x['book_id']==str(book_id)]
-    for i in book_dicts:
-        if i['book_id'] == str(book_id):
-            selected_book = i
-    print(post_dict)
-    return render_template('book.html', book_id=book_id, posts=post_dict, book=selected_book)
-
+    try:
+        book = get_book(book_id)
+        posts = get_posts(book_id)
+        return render_template('book.html', book_id=book_id, posts=posts, book=book)
+    except UnboundLocalError:
+        abort(404)
+        # return render_template(url_for('index'))
+    # return render_template('book.html', book_id=book_id)
     # return render_template('book.html', book_id=book_id, post_dicts=post_dict)
+
+@app.route('/upload', methods=['GET', 'POST'])
+def upload():
+    if request.method == 'POST':
+        post = request.form['post_content']
+        author = request.form['post_author']
+        book_id = int(request.form['book_id'])
+        db.child('posts').push({'book_id':book_id, 'post_author': author, 'post': post})
+        return redirect(url_for('book', book_id=book_id))
+    # book_id = request.form['book_id']
+    # return render_template('book.html', book_id=book_id, posts=get_posts(book_id), book=get_book(book_id))
+
+@app.route('/newbook', methods=['GET', 'POST'])
+def newbook():
+    if request.method == 'POST':
+        book = request.form['book_name']
+        author = request.form['author_name']
+        book_id = increment_id()
+        db.child('books').push({'book_id':book_id, 'author': author, 'book': book})
+        return redirect(url_for('index'))
 
 if __name__ == '__main__':
    app.run(debug = True)
+
+
+

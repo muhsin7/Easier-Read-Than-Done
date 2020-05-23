@@ -9,6 +9,7 @@
     <!-- Import main stylesheet -->
     <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}"  media="screen,projection"/>
     <!--Let browser know website is optimized for mobile-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   </head>
 
@@ -18,15 +19,15 @@
       <br />
       <br />
       <br />
-      <h1><a href="/">Easier Read Than Done</a></h1>
+    <a href="/"><h1 class="title">Easier Read Than Done</h1></a>
       <h6>A Student Led Book Club</h6>
       <br /><br /><br />
-      <h5>Flush - Carl Hiaasen</h5>
+      <h5>{{ book.val()['book'] }} - {{ book.val()['author'] }}</h5>
     </center>
     <div class="container">
       <div class="row">
           <center>
-            <img src="{{ book['book_cover'] }}"/>
+            <img src="{{ book['cover'] }}"/>
           </center>
           </div>
         </div>
@@ -38,10 +39,10 @@
           <h5>Posts</h5>
           <hr />
           {% for post in posts %}
-            <div class="card darken-1">
-              <div class="card-content white-text">
-                <span class="card-title">By {{ post['post_author'] }}</span>
-                <p>{{ post['post'] }}</p>
+            <div class="card white-text blue-grey  post hoverable">
+              <div class="card-content">
+                <span class="card-title">By {{ post.val()['post_author'] }}</span>
+                <p>{{ post.val()['post'] }}</p>
               </div>
             </div>
           {% endfor %}
@@ -49,6 +50,36 @@
           </div>
       </div>
     <br /><br /><br /><br /><br /><br /><br /><br /><br />
+
+    <div class="fixed-action-btn">
+      <a class="btn-floating btn-large modal-trigger new-post" href="#post">
+        <i class="large material-icons">mode_edit</i>
+        <!-- <span class="valign-wrapper">POST</span> -->
+      </a>
+   </div>
+   <div class="modal" id="post">
+     <div class="modal-content">
+         <h4>Upload a post for this book</h4>
+         <br>
+        <form method="POST" action="{{ url_for('upload') }}">
+            <div class="input-field col s12">
+              <textarea id="post_content" class="materialize-textarea" name="post_content" required></textarea>
+              <label for="post_content">Post content</label>
+            </div>
+
+
+            <input placeholder="Post Author" id="author_name" type="text" name="post_author" required>
+            <label for="author_name">Post Author</label>
+
+            <input placeholder="Input name" id="book_id" type="hidden" name="book_id" value="{{ book_id }}" >
+            <br>
+            <br>
+            <input type="submit" class="btn btn-large" value="Post">
+        </form>
+     </div>
+   </div>
+
+
     <!--JavaScript at end of body for optimized loading-->
     <footer class="page-footer black" style="margin-top:20px">
       <div class="container">
@@ -61,6 +92,16 @@
         </div>
       </div>
     </footer>
-    <script type="text/javascript" src="{{ url_for('static', filename='js/materialize.js') }}"></script>
+
+     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
+
+    <script>
+        $(document).ready(function(){
+            $(".modal").modal();
+        });
+        M.textareaAutoResize($('#textarea1'));
+
+    </script>
   </body>
 </html>
