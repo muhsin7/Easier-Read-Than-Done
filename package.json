@@ -1,0 +1,23 @@
+{
+  "name": "FlaskBookClub",
+  "version": "1.0.0",
+  "description": "Website made for student initiated book club using Flask.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/muhsin7/Easier-Read-Than-Done.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/muhsin7/Easier-Read-Than-Done/issues"
+  },
+  "homepage": "https://github.com/muhsin7/Easier-Read-Than-Done#readme",
+  "devDependencies": {
+    "firebase-tools": "^8.4.1"
+  }
+}

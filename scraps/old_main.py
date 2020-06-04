@@ -1,5 +1,5 @@
-from flask import Flask, render_template
-import gsheets
+from flask import Flask
+
 app = Flask(__name__)
 
 

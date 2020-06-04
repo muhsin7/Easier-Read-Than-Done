@@ -54,14 +54,14 @@
      <div class="modal-content">
          <h4>Upload a new book</h4>
          <br>
-        <form method="POST" action="{{ url_for('newbook') }}">
+        <form method="POST" action="{{ url_for('newbook') }}" enctype="multipart/form-data">
 
             <input placeholder="Book name" id="book_name" type="text" name="book_name" required>
             <label for="book_name">Book Name</label>
 
             <input placeholder="Author name" id="author_name" type="text" name="author_name" required>
             <label for="author_name">Author Name</label>
-
+<!--
             <div class="file-field input-field">
               <div class="btn">
                 <span>File</span>
@@ -70,7 +70,8 @@
               <div class="file-path-wrapper">
                 <input class="file-path validate" type="text">
               </div>
-            </div>
+            </div> -->
+            <input type="file" name="cover">
 
             <input id="book_id" type="hidden" name="book_id" value="{{ book_id }}" >
             <br>

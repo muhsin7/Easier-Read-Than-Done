@@ -1,5 +1,14 @@
 import pyrebase
 
+config = {
+    'apiKey': "AIzaSyBJb4UDopg9_e_k2IuEqlDeiag3WZg0qwo",
+    'authDomain': "easier-read-than-done.firebaseapp.com",
+    'databaseURL': "https://easier-read-than-done.firebaseio.com",
+    'projectId': "easier-read-than-done",
+    'storageBucket': "easier-read-than-done.appspot.com",
+    'messagingSenderId': "776700011357",
+    'appId': "1:776700011357:web:6b820f606b72a9d4313eb4",
+    'measurementId': "G-MEVQWLJL6E"
 }
 
 firebase = pyrebase.initialize_app(config)
@@ -31,3 +40,10 @@ all_books = db.child('books').get().each()
 #     return selected_book
 #
 # print(get_book(3))
+
+# --------------------------------------------------------------
+
+
+
+storage = firebase.storage()
+storage.child("images.flasktestplswork.jpg").put("flush.png")

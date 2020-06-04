@@ -1,5 +1,4 @@
-import gsheets
-from pprint import pprint
+from scraps import gsheets
 
 books, posts = gsheets.main()
 books, posts = books[1:], posts[1:]

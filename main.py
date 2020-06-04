@@ -1,10 +1,20 @@
 from flask import Flask, render_template, request, redirect, url_for, abort
 import pyrebase
-
+import os
+config = {
+    'apiKey': "AIzaSyBJb4UDopg9_e_k2IuEqlDeiag3WZg0qwo",
+    'authDomain': "easier-read-than-done.firebaseapp.com",
+    'databaseURL': "https://easier-read-than-done.firebaseio.com",
+    'projectId': "easier-read-than-done",
+    'storageBucket': "easier-read-than-done.appspot.com",
+    'messagingSenderId': "776700011357",
+    'appId': "1:776700011357:web:6b820f606b72a9d4313eb4",
+    'measurementId': "G-MEVQWLJL6E"
 }
 
 firebase = pyrebase.initialize_app(config)
 db = firebase.database()
+storage = firebase.storage()
 app = Flask(__name__)
 
 def get_posts(id):
@@ -66,11 +76,15 @@ def newbook():
         book = request.form['book_name']
         author = request.form['author_name']
         book_id = increment_id()
-        db.child('books').push({'book_id':book_id, 'author': author, 'book': book})
+        file = request.form['cover']
+        newFile = FileContents(name=file.filename, data=file.read())
+        # file = request.form.get("book_cover")
+        name = (f'/{book}_{author.split()[0]}_{str(book_id)}.jpeg').lower()
+        storage.child(name).put(file)
+        print(file, type(file))
+        db.child('books').push({'book_id':book_id, 'author': author, 'book': book, 'cover': name})
         return redirect(url_for('index'))
 
 if __name__ == '__main__':
-   app.run(debug = True)
-
-
-
+   # app.run(debug = True)
+   app.run(debug=True, host='0.0.0.0', port=int(os.environ.get('PORT', 8080)))

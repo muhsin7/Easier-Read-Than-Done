@@ -2,5 +2,9 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/flask trash/Easier Read Than Done/Steganography-With-Python" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/flask trash/EasierReadThanDone/easierreadthandone" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/scraps/flask trash/Easier Read Than Done/Steganography-With-Python" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/scraps/flask trash/EasierReadThanDone/easierreadthandone" vcs="Git" />
   </component>
 </project>
