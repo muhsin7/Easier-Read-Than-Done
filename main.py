@@ -2,14 +2,14 @@ from flask import Flask, render_template, request, redirect, url_for, abort
 import pyrebase
 import os
 config = {
-    'apiKey': "AIzaSyBJb4UDopg9_e_k2IuEqlDeiag3WZg0qwo",
-    'authDomain': "easier-read-than-done.firebaseapp.com",
-    'databaseURL': "https://easier-read-than-done.firebaseio.com",
+    'apiKey': "<key>",
+    'authDomain': "<domain>",
+    'databaseURL': "<url>",
     'projectId': "easier-read-than-done",
-    'storageBucket': "easier-read-than-done.appspot.com",
-    'messagingSenderId': "776700011357",
-    'appId': "1:776700011357:web:6b820f606b72a9d4313eb4",
-    'measurementId': "G-MEVQWLJL6E"
+    'storageBucket': "<bucket>",
+    'messagingSenderId': "<id>",
+    'appId': "<addId>",
+    'measurementId': "<measurementId>"
 }
 
 firebase = pyrebase.initialize_app(config)
